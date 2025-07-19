@@ -60,6 +60,7 @@ from django.utils import timezone
 
 exit()
 
+https://www.pythonanywhere.com/
 For the pythonanywhere
 
 python manage.py collectstatic
