@@ -1,0 +1,96 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django-specific
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# If you are using PostgreSQL and create local dumps
+*.dump
+
+# Local environment files
+.env
+*.env
+
+# Virtualenv
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# pip-tools output
+pip-log.txt
+pip-delete-this-directory.txt
+
+# pyenv
+.python-version
+
+# VS Code, PyCharm and other IDE/editor stuff
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Static and media files (if generated locally)
+staticfiles/
+media/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Test output
+junit.xml
+test-results/
+
+# Migrations (optional, often kept in source)
+# Comment this out if you want to track migrations
+# **/migrations/
+# !**/migrations/__init__.py
+
+# Pytest
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Docker
+*.pid
+*.tar
+*.gz

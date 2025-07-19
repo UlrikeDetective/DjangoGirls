@@ -41,4 +41,5 @@ python manage.py createsuperuser
 
 pa_autoconfigure_django.py --python=3.10 --nuke https://github.com/UlrikeDetective/DjangoGirls.git
 
+Website URL: https://pattern-disrupt.pythonanywhere.com
 patterndisrupt.pythonanywhere.com
