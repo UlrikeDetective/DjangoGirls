@@ -38,3 +38,7 @@ python manage.py migrate
 python manage.py runserver
 
 python manage.py createsuperuser
+
+pa_autoconfigure_django.py --python=3.10 --nuke https://github.com/UlrikeDetective/DjangoGirls.git
+
+patterndisrupt.pythonanywhere.com
