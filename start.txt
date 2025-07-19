@@ -1,0 +1,37 @@
+python3 -m venv venv
+source venv/bin/activate
+
+https://tutorial.djangogirls.org/en/django_models/
+
+Step-by-step for creating a Django project on Mac:
+Open Terminal
+
+Activate your virtual environment
+
+python3 -m venv venv
+source venv/bin/activate
+
+(venv) username@MacBook ~ %
+Create your Django project
+Run this command:
+
+django-admin startproject demoproject
+This creates a folder called demoproject with your Django project inside.
+
+Go into your new project folder:
+
+cd demoproject
+Run the development server to test it:
+
+python manage.py runserver
+Open your browser and go to http://127.0.0.1:8000 to see your first Django site!
+
+add requirements.txt
+Create a requirements.txt file to manage your project dependencies. You can do this by running:
+
+Next, you can create your Django project in the current directory by running:
+django-admin startproject mysite .
+
+python manage.py migrate
+
+python manage.py runserver
