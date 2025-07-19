@@ -59,3 +59,7 @@ from django.utils import timezone
 <QuerySet []>
 
 exit()
+
+For the pythonanywhere
+
+python manage.py collectstatic
