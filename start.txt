@@ -28,6 +28,7 @@ Open your browser and go to http://127.0.0.1:8000 to see your first Django site!
 
 add requirements.txt
 Create a requirements.txt file to manage your project dependencies. You can do this by running:
+pip install -r requirements.txt
 
 Next, you can create your Django project in the current directory by running:
 django-admin startproject mysite .
@@ -35,3 +36,5 @@ django-admin startproject mysite .
 python manage.py migrate
 
 python manage.py runserver
+
+python manage.py createsuperuser
