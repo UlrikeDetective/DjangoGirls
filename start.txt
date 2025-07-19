@@ -43,3 +43,19 @@ pa_autoconfigure_django.py --python=3.10 --nuke https://github.com/UlrikeDetecti
 
 Website URL: https://pattern-disrupt.pythonanywhere.com
 patterndisrupt.pythonanywhere.com
+
+Django shell
+python manage.py shell
+from blog.models import Post
+User.objects.all() 
+<QuerySet [<User: Wasp>]>
+me = User.objects.get(username='Wasp')
+
+Post.objects.filter(author=me)
+<QuerySet [<Post: Sample title>, <Post: Day 01>, <Post: Day 02>, <Post: Day 03>]>
+
+from django.utils import timezone
+>>> Post.objects.filter(published_date__lte=timezone.now())
+<QuerySet []>
+
+exit()
