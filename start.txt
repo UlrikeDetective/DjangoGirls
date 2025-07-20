@@ -41,8 +41,7 @@ python manage.py createsuperuser
 
 pa_autoconfigure_django.py --python=3.10 --nuke https://github.com/UlrikeDetective/DjangoGirls.git
 
-Website URL: https://pattern-disrupt.pythonanywhere.com
-patterndisrupt.pythonanywhere.com
+Website URL: https://patterndisrupt.pythonanywhere.com
 
 Django shell
 python manage.py shell
@@ -64,3 +63,8 @@ https://www.pythonanywhere.com/
 For the pythonanywhere
 
 python manage.py collectstatic
+
+Update website on PythonAnywhere:
+- go to console
+- ls and cd patterndisrupt.pythonanywhere.com (to dictory)
+- git pull
