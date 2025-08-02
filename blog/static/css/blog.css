@@ -78,3 +78,9 @@ h4 {
     color: #FFFFFF;
     background-color: #0883A1;
 }
+
+.post-image {
+    max-width: 50%;
+    height: auto;
+    padding-bottom: 15px;
+}
