@@ -94,3 +94,7 @@ var/
 *.pid
 *.tar
 *.gz
+
+#/static/admin/css/*
+#/static/admin/img/*
+/static/*

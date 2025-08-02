@@ -9,7 +9,7 @@
         {% endif %}
         <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
         <h2>{{ post.title }}</h2>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p>{{ post.text|linebreaksbr|safe }}</p>
         {% if post.image %}
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
         {% endif %}
