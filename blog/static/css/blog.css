@@ -54,6 +54,9 @@ h4 {
 
 .post {
     margin-bottom: 70px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    overflow: auto; 
 }
 
 .post h2 a,
@@ -80,7 +83,9 @@ h4 {
 }
 
 .post-image {
-    max-width: 50%;
+    max-width: 40%;
     height: auto;
-    padding-bottom: 15px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
 }
