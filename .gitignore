@@ -44,7 +44,7 @@ Thumbs.db
 
 # Static and media files (if generated locally)
 staticfiles/
-media/
+# media/
 
 # Coverage reports
 htmlcov/

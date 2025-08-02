@@ -68,3 +68,12 @@ Update website on PythonAnywhere:
 - go to console
 - ls and cd patterndisrupt.pythonanywhere.com (to dictory)
 - git pull
+
+Website patterndisrupt.pythonanywhere.com
+
+Activate your virtual environment:
+workon patterndisrupt.pythonanywhere.com
+
+pip install django-ckeditor
+
+python manage.py collectstatic
