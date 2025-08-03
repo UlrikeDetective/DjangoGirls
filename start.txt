@@ -77,3 +77,8 @@ workon patterndisrupt.pythonanywhere.com
 pip install django-ckeditor
 
 python manage.py collectstatic
+
+-------------------------------------
+others:
+convert diary csv to txt
+python_code/convert_csv.ipynb

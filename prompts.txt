@@ -1,9 +1,14 @@
-the tone should be light and funny and the voice of a modern urban woman
+Please convert the notes of things I have done, felt and so on in the last month to an interesting, funny and smart blog post.
+The tone should be light and funny and the voice of a modern urban woman. The blog post should be max 750 words.
+
+Please don't follow the structure of the notes, go more for themes and bundle them together. Also please elimante personal infos like friends names.
+
+focusing on that humble, Scandinavian-influenced tone, with very subtle, dry humor. The goal is to be concise, genuine, and not try too hard for laughs.
+
+References blog posts:
 
 
 -- January 2025
-Please write a blog post of no more than 1000 words in a funny, sophisticaded, smart 
-and intersting way. Your persona is of a young at heart urban woman.
 
 New Year, Same Me (But With More Coffee and Code!)
 
@@ -24,6 +29,20 @@ Coursera courses? Done! Yoga and meditation? Nailed it! Coffee intake? Under con
 As I close this chapter on January, I have to make a few decisions. Ibiza or Tarifa? Python or R? And do I drink too much coffee?
 
 Until next time, keep calm and code on (or just drink coffee).
+
+February 2025 - Code, Cold & Coastlines
+
+February arrived. It brought its usual routines and a few unexpected turns.
+
+Life involved a fair bit of tech learning, covering Python coding, data analytics, and a bit of JavaScript. Work skills, like project management, also needed attention. There were quite a lot of long workdays, filled with meetings, which meant less time for deeper learning. I also led three work seminars, introducing local government topics. Teaching these was helpful, as the questions from colleagues often provided good feedback for me too.
+
+Health-wise, February had its moments. I battled a recurring cold. This made yoga practice harder than usual , and my bouldering mostly stayed in the easy zones. My skin, frankly, was tired of winter.
+
+Towards the end of the month, a welcome escape arrived. I left the dark, cold days behind and found the sun still shining, and ocean waves proved to be quite healing. Hello, Fuerteventura. The first day was good: yoga, sunshine, and long walks on the beach.
+
+As for other things in February? Let's just say neither the election campaign nor the outcome of the election made me feel more positive about the year ahead.
+
+Until next time, keep calm and code on, or just find a good coffee —ideally an excellent iced one by the beach.
 
 -- short story of a Wasp
 

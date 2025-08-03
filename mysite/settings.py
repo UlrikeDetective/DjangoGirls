@@ -38,6 +38,11 @@ project_domain = os.getenv('PROJECT_DOMAIN')
 if project_domain:
     ALLOWED_HOSTS.append(f"{project_domain}.glitch.me")
 
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']
+
+
 
 # Application definition
 
