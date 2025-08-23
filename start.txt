@@ -26,6 +26,8 @@ Run the development server to test it:
 python manage.py runserver
 Open your browser and go to http://127.0.0.1:8000 to see your first Django site!
 
+Go to http://127.0.0.1:8000/admin and log in.
+
 add requirements.txt
 Create a requirements.txt file to manage your project dependencies. You can do this by running:
 pip install -r requirements.txt
