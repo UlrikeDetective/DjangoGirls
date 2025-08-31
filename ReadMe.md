@@ -1,226 +1,113 @@
-
-````markdown
-# 🌸 Django Girls Blog — macOS Setup Guide
-
-This guide walks you through setting up your Django Girls blog on **macOS**.
-
----
-
-## ✅ 1. Create Virtual Environment
-
-```bash
-python3 -m venv myvenv
-source myvenv/bin/activate
-````
-
----
-
-## ✅ 2. Install Django
-
-```bash
-pip install django
-```
-
----
-
-## ✅ 3. Start Django Project
-
-```bash
-django-admin startproject mysite .
-```
-
----
-
-## ✅ 4. Adjust Settings (`mysite/settings.py`)
-
-```python
-TIME_ZONE = 'Europe/Berlin'
-LANGUAGE_CODE = 'de-ch'
-
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com']
-```
-
----
-
-## ✅ 5. Initialize Database
-
-```bash
-python manage.py migrate
-```
-
----
-
-## ✅ 6. Run Local Development Server
-
-```bash
-python manage.py runserver
-```
-
-Open: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
----
-
-## ✅ 7. Create Blog App
-
-```bash
-python manage.py startapp blog
-```
-
-Add `'blog',` to `INSTALLED_APPS` in `mysite/settings.py`.
-
----
-
-## ✅ 8. Define Model (`blog/models.py`)
-
-```python
-from django.conf import settings
-from django.db import models
-from django.utils import timezone
-
-class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-    def __str__(self):
-        return self.title
-```
-
----
-
-## ✅ 9. Apply Migrations
-
-```bash
-python manage.py makemigrations blog
-python manage.py migrate blog
-```
-
----
-
-## ✅ 10. Register Model (`blog/admin.py`)
-
-```python
-from django.contrib import admin
-from .models import Post
-
-admin.site.register(Post)
-```
-
-Create admin user:
-
-```bash
-python manage.py createsuperuser
-```
-
----
-
-## ✅ 11. URL Configuration
-
-**`mysite/urls.py`:**
-
-```python
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
-]
-```
-
-**Create `blog/urls.py`:**
-
-```python
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.post_list, name='post_list'),
-]
-```
-
----
-
-## ✅ 12. Create View (`blog/views.py`)
-
-```python
-from django.shortcuts import render
-from django.utils import timezone
-from .models import Post
-
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
-```
-
----
-
-## ✅ 13. Create Template
-
-**`blog/templates/blog/post_list.html`:**
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Django Blog</title>
-</head>
-<body>
-    <h1>Django Blog</h1>
-    {% for post in posts %}
-        <article>
-            <h2>{{ post.title }}</h2>
-            <p><em>{{ post.published_date }}</em></p>
-            <div>{{ post.text|linebreaksbr }}</div>
-        </article>
-    {% endfor %}
-</body>
-</html>
-```
-
----
-
-## ✅ 14. Commit to GitHub
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/<your-username>/my-first-blog.git
-git push -u origin HEAD
-```
-
-If GitHub password login fails, [create a personal access token](https://github.com/settings/tokens) and use that as your password.
-
----
-
-## ✅ 15. Deploy on PythonAnywhere
-
-In **PythonAnywhere Bash console**:
-
-```bash
-pip3.10 install --user pythonanywhere
-pa_autoconfigure_django.py --python=3.10 https://github.com/<your-username>/my-first-blog.git
-python manage.py createsuperuser
-```
-
-Your site is live at:
-
-```
-https://<your-pythonanywhere-username>.pythonanywhere.com
-```
-
----
-
-🎉 Congrats — your Django blog is now live!
-
-```
+# Django Girls Blog
+
+This is a Django-based blog application.
+
+## First-Time Setup
+
+To run this application for the first time, follow these steps:
+
+1.  **Create and activate a virtual environment:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Apply database migrations:**
+    ```bash
+    python manage.py migrate
+    ```
+
+4.  **Create a superuser:**
+    This will create an admin account.
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+5.  **Run the development server:**
+    ```bash
+    python manage.py runserver
+    ```
+    The application will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+## Development
+
+For subsequent development or running the application:
+
+1.  **Activate the virtual environment:**
+    ```bash
+    source venv/bin/activate
+    ```
+
+2.  **Run the development server:**
+    ```bash
+    python manage.py runserver
+    ```
+
+3.  **When making changes to static files (CSS, JS, images):**
+    Run this command to collect static files.
+    ```bash
+    python manage.py collectstatic
+    ```
+
+## Deployment on PythonAnywhere
+
+### Initial Deployment
+
+1.  **Auto-configure Django project:**
+    This command will set up your Django project on PythonAnywhere. Replace the git repository URL with your own.
+    ```bash
+    pa_autoconfigure_django.py --python=3.10 --nuke https://github.com/UlrikeDetective/DjangoGirls.git
+    ```
+
+2.  **Activate your virtual environment:**
+    Replace `patterndisrupt.pythonanywhere.com` with your site name.
+    ```bash
+    workon patterndisrupt.pythonanywhere.com
+    ```
+
+3.  **Install any new dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Collect static files:**
+    ```bash
+    python manage.py collectstatic
+    ```
+
+### Updating the Website
+
+1.  **Open a console on PythonAnywhere.**
+
+2.  **Navigate to your project directory:**
+    Replace `patterndisrupt.pythonanywhere.com` with your directory name.
+    ```bash
+    cd patterndisrupt.pythonanywhere.com
+    ```
+
+3.  **Pull the latest changes from your git repository:**
+    ```bash
+    git pull
+    ```
+
+4.  **Activate your virtual environment:**
+    Replace `patterndisrupt.pythonanywhere.com` with your site name.
+    ```bash
+    workon patterndisrupt.pythonanywhere.com
+    ```
+
+5.  **Install any new dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+6.  **Collect static files:**
+    ```bash
+    python manage.py collectstatic
+    ```
+7.  **Reload your web app** from the PythonAnywhere dashboard.
