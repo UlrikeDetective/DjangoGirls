@@ -55,6 +55,7 @@ For subsequent development or running the application:
     ```
 
 ## Deployment on PythonAnywhere
+- Push to github
 
 ### Initial Deployment
 
@@ -63,6 +64,8 @@ For subsequent development or running the application:
     ```bash
     pa_autoconfigure_django.py --python=3.10 --nuke https://github.com/UlrikeDetective/DjangoGirls.git
     ```
+
+    Go to https://www.pythonanywhere.com/
 
 2.  **Activate your virtual environment:**
     Replace `patterndisrupt.pythonanywhere.com` with your site name.
