@@ -85,8 +85,10 @@ For subsequent development or running the application:
 
 ### Updating the Website
 
-1.  **Open a console on PythonAnywhere.**
+git push
 
+1.  **Open a console on PythonAnywhere.**
+    pythonanywhere.com
 2.  **Navigate to your project directory:**
     Replace `patterndisrupt.pythonanywhere.com` with your directory name.
     ```bash
