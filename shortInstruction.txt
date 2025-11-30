@@ -11,6 +11,11 @@ Write new post:
 http://127.0.0.1:8000/post/new/
 
 Git commands:
-git add .
-git commit -m "Update website"
-git push
+git add . - git commit -m "Update website" - git push
+
+Website URL: https://patterndisrupt.pythonanywhere.com
+
+https://www.pythonanywhere.com/
+- go to console
+- ls and cd patterndisrupt.pythonanywhere.com (to dictory)
+- git pull
