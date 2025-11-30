@@ -1,0 +1,16 @@
+source venv/bin/activate
+
+python manage.py runserver
+
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/admin/login/?next=/admin/
+
+see .env file for username and password
+
+Write new post:
+http://127.0.0.1:8000/post/new/
+
+Git commands:
+git add .
+git commit -m "Update website"
+git push
