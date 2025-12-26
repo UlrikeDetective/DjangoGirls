@@ -206,3 +206,71 @@ To get an email when a comment is posted, you'll need to configure Django's emai
     ```
 
 This completes the setup. When you are ready to continue, follow these steps in order.
+
+---
+
+### Step 8 (Optional): How to Disable Comment Moderation
+
+If you prefer comments to appear on your blog immediately without needing your approval, you can disable the moderation feature.
+
+This involves two small changes: one in the model to approve comments by default, and one in the template to remove the check.
+
+1.  **Update the Comment Model**
+
+    -   Open `blog/models.py`.
+    -   Find the `Comment` model.
+    -   Change the `default` value of the `approved_comment` field from `False` to `True`.
+
+    **Change this:**
+    ```python
+    approved_comment = models.BooleanField(default=False)
+    ```
+
+    **To this:**
+    ```python
+    approved_comment = models.BooleanField(default=True)
+    ```
+
+2.  **Apply the Database Change**
+
+    -   Because you've changed a model's default value, you need to update the database. Run the following commands:
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+3.  **Update the Template**
+
+    -   Now that all comments are approved by default, you can remove the approval check from the template.
+    -   Open `blog/templates/blog/post_detail.html`.
+    -   Find the loop that displays comments and remove the `{% if comment.approved_comment %}` and `{% endif %}` tags surrounding the comment `<div>`.
+
+    **Change this:**
+    ```html
+    {% for comment in post.comments.all %}
+        {% if comment.approved_comment %}
+            <div class="comment">
+                <div class="date">{{ comment.created_date }}</div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% endif %}
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
+    ```
+
+    **To this:**
+    ```html
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <div class="date">{{ comment.created_date }}</div>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text|linebreaks }}</p>
+        </div>
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
+    ```
+
+With these changes, new comments will be visible on your posts as soon as they are submitted. You will still be able to un-approve or delete them from the admin panel if you need to.
