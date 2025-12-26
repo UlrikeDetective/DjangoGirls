@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 
 def post_list(request):
@@ -12,7 +13,31 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            # Optional: Add your email alert logic here
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+
+        # Send email alert
+        send_mail(
+            'New Comment on Your Blog Post',
+            f'A new comment was posted on "{post.title}" by {comment.author}.\n\nRead it here: {request.build_absolute_uri()}',
+            'from-email@example.com', # Should match EMAIL_HOST_USER
+            ['admin-email@example.com'], # Your email
+            fail_silently=False,
+        )
+
+        return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
 
 @login_required
 def post_new(request):
