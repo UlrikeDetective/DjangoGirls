@@ -55,6 +55,8 @@ Since you added a new `Comment` model, you must update your live database on Pyt
 
 If you implemented the optional email alert feature, you must securely set your email credentials on PythonAnywhere. **Do not hardcode them in your `settings.py` file.**
 
+**Option A: Using the Web Tab (if available)**
+
 1.  Go to the **"Web"** tab on your PythonAnywhere dashboard.
 2.  Scroll down to the **"Code"** section.
 3.  Find the **"Environment variables"** section.
@@ -62,6 +64,26 @@ If you implemented the optional email alert feature, you must securely set your 
     *   **Variable Name:** `EMAIL_HOST_USER`, **Value:** `your-email@gmail.com`
     *   **Variable Name:** `EMAIL_HOST_PASSWORD`, **Value:** `your-16-character-app-password`
 5.  Click the **"Add"** button for each one.
+
+**Option B: Setting in WSGI Configuration File (if Option A is not available)**
+
+If you don't see an "Environment variables" section on the "Web" tab, you can set them directly in your WSGI file.
+
+1.  Go to the **"Files"** tab on your PythonAnywhere dashboard.
+2.  Navigate to the path of your WSGI configuration file, which you can find under the "Code" section of your "Web" tab (e.g., `/var/www/patterndisrupt_pythonanywhere_com_wsgi.py`). Click on it to open it in the editor.
+3.  **Add the following lines** at the very top of the file, *after* any existing `import os` statements but *before* your Django application is loaded (e.g., `os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'`):
+
+    ```python
+    import os
+
+    # Your email credentials for comment notifications
+    os.environ['EMAIL_HOST_USER'] = 'your-email@gmail.com'
+    os.environ['EMAIL_HOST_PASSWORD'] = 'your-16-character-app-password'
+
+    # (rest of your WSGI file content)
+    ```
+4.  **Replace** `'your-email@gmail.com'` with your actual email address and `'your-16-character-app-password'` with the App Password you generated for your Google account.
+5.  **Save** the WSGI file.
 
 ---
 
