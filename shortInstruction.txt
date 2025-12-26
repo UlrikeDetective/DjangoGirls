@@ -19,3 +19,7 @@ https://www.pythonanywhere.com/
 - go to console
 - ls and cd patterndisrupt.pythonanywhere.com (to dictory)
 - git pull
+maybe
+- python manage.py collectstatic --noinput
+- Reload your web app: Go to the "Web" tab on your PythonAnywhere dashboard and click
+      the green "Reload" button.
