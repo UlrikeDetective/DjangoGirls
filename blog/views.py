@@ -5,6 +5,7 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.conf import settings
 
 
 def post_list(request):
@@ -19,22 +20,17 @@ def post_detail(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            # Optional: Add your email alert logic here
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
 
-        # Send email alert
-        send_mail(
-            'New Comment on Your Blog Post',
-            f'A new comment was posted on "{post.title}" by {comment.author}.\n\nRead it here: {request.build_absolute_uri()}',
-            'from-email@example.com', # Should match EMAIL_HOST_USER
-            ['admin-email@example.com'], # Your email
-            fail_silently=False,
-        )
+            # Send email alert
+            send_mail(
+                'New Comment on Your Blog Post',
+                f'A new comment was posted on "{post.title}" by {comment.author}.\n\nRead it here: {request.build_absolute_uri()}',
+                settings.EMAIL_HOST_USER, # Use the configured email address
+                ['admin-email@example.com'], # Your email
+                fail_silently=False,
+            )
 
-        return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
     return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
