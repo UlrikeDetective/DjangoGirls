@@ -156,6 +156,7 @@ Now you can log into your admin site (`/admin`) and you will see a "Comments" se
 
 ---
 
+
 ### Step 7: (Optional) Set Up Email Alerts
 
 To get an email when a comment is posted, you'll need to configure Django's email settings.
@@ -208,6 +209,7 @@ To get an email when a comment is posted, you'll need to configure Django's emai
 This completes the setup. When you are ready to continue, follow these steps in order.
 
 ---
+
 
 ### Step 8 (Optional): How to Disable Comment Moderation
 
@@ -274,3 +276,74 @@ This involves two small changes: one in the model to approve comments by default
     ```
 
 With these changes, new comments will be visible on your posts as soon as they are submitted. You will still be able to un-approve or delete them from the admin panel if you need to.
+
+---
+
+
+### Step 9: Add Approve and Remove Buttons for Admins
+
+If you want to easily approve or delete comments directly from the post page (visible only to you when logged in), follow these steps.
+
+1.  **Update `blog/urls.py`**
+    
+    Add two new URL patterns for approving and removing comments.
+
+    ```python
+    urlpatterns = [
+        # ... existing patterns ...
+        path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
+        path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+    ]
+    ```
+
+2.  **Update `blog/views.py`**
+
+    Add the corresponding views to handle these actions. Make sure to use `@login_required` so only authenticated users (you) can use them.
+
+    ```python
+    from django.contrib.auth.decorators import login_required
+    # ... other imports
+
+    @login_required
+    def comment_approve(request, pk):
+        comment = get_object_or_404(Comment, pk=pk)
+        comment.approve()
+        return redirect('post_detail', pk=comment.post.pk)
+
+    @login_required
+    def comment_remove(request, pk):
+        comment = get_object_or_404(Comment, pk=pk)
+        comment.delete()
+        return redirect('post_detail', pk=comment.post.pk)
+    ```
+
+3.  **Update `blog/templates/blog/post_detail.html`**
+
+    Modify the comments section to:
+    - Show unapproved comments if you are logged in.
+    - Display "Approve" and "Remove" buttons for logged-in users.
+
+    Replace the existing comment loop with this:
+
+    ```html
+    <h2>Comments</h2>
+    {% for comment in post.comments.all %}
+        {% if user.is_authenticated or comment.approved_comment %}
+        <div class="comment">
+            <div class="date">
+                {{ comment.created_date }}
+                {% if user.is_authenticated %}
+                    {% if not comment.approved_comment %}
+                        <a class="btn btn-secondary" href="{% url 'comment_approve' pk=comment.pk %}">Approve</a>
+                    {% endif %}
+                    <a class="btn btn-secondary" href="{% url 'comment_remove' pk=comment.pk %}">Remove</a>
+                {% endif %}
+            </div>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text|linebreaks }}</p>
+        </div>
+        {% endif %}
+    {% empty %}
+    <p>No comments here yet :(</p>
+    {% endfor %}
+    ```
