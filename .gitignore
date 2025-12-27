@@ -4,12 +4,13 @@ __pycache__/
 *$py.class
 
 # Django-specific
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 *.log
 *.pot
 *.pyc
 *.pyo
-*.db
-*.sqlite3
 
 # If you are using PostgreSQL and create local dumps
 *.dump
@@ -44,7 +45,7 @@ Thumbs.db
 
 # Static and media files (if generated locally)
 staticfiles/
-# media/
+media/
 
 # Coverage reports
 htmlcov/
