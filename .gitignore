@@ -44,7 +44,7 @@ pip-delete-this-directory.txt
 Thumbs.db
 
 # Static and media files (if generated locally)
-staticfiles/
+# staticfiles/
 # media/
 
 # Coverage reports
