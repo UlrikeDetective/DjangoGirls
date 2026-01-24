@@ -1,5 +1,6 @@
 https://tutorial.djangogirls.org/en/django_models/
 
+
 Step-by-step for creating a Django project on Mac:
 Open Terminal
 
